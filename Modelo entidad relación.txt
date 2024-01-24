@@ -1,0 +1,48 @@
+Usuario
+  id
+  nombre
+  apellido
+  correo electrónico
+  celular
+
+Ruta
+  id
+  fecha
+  tipoDeVehiculo
+  horaDeSalida
+  cuposDisponibles
+  lugarDeOrigen
+  lugarDeDestino
+
+Suscripción
+  id
+  usuarioId
+  rutaId
+
+----------------------------------------------------------
+
+CREATE TABLE usuario (
+  id SERIAL PRIMARY KEY,
+  nombre VARCHAR(255),
+  apellido VARCHAR(255),
+  correo_electronico VARCHAR(255),
+  celular VARCHAR(255)
+);
+
+CREATE TABLE ruta (
+  id SERIAL PRIMARY KEY,
+  fecha DATE,
+  tipoDeVehiculo VARCHAR(255),
+  horaDeSalida TIME,
+  cuposDisponibles INT,
+  lugarDeOrigen VARCHAR(255),
+  lugarDeDestino VARCHAR(255)
+);
+
+CREATE TABLE suscripcion (
+  id SERIAL PRIMARY KEY,
+  usuarioId INT,
+  rutaId INT,
+  FOREIGN KEY (usuarioId) REFERENCES Usuario(id),
+  FOREIGN KEY (rutaId) REFERENCES Ruta(id)
+);

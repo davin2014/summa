@@ -1,0 +1,42 @@
+.main-header-area {
+    position: absolute;
+    height: 90px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+  
+    @media (max-width: 768px) {
+      height: 70px;
+    }
+  }
+  
+  .navbar-summa {
+    background: linear-gradient(to right, rgba(85, 116, 96, 1), rgba(85, 116, 96, 0.8)) 0% 0% no-repeat padding-box;
+    mix-blend-mode: multiply;
+    opacity: 1;
+  }
+  
+  .active {
+    font-family: 'Olivier' !important;
+    font-size: 1.2em;
+    font-display: swap;
+  
+    @media (max-width: 768px) {
+      font-size: 1em;
+    }
+  }
+  
+  .navbar-summa-inner {
+    background: transparent;
+  }
+  
+  .nav-link {
+    color:#FFFFFF !important;
+    text-transform: capitalize;
+    font-family: 'ITCFranklinGothicStd-Book';
+  
+    @media (max-width: 768px) {
+      font-size: 0.8em;
+    }
+  }

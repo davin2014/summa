@@ -1,0 +1,96 @@
+  
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Registrar ruta</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="submit()">
+          <mat-form-field appearance="fill">
+            <mat-label>Fecha</mat-label>
+            <input matInput placeholder="Fecha" formControlName="date" [matDatepicker]="picker" required/>
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+      
+          
+
+          <mat-form-field appearance="fill">
+            <mat-label>Tipo de vehículo</mat-label>
+            <mat-select matNativeControl formControlName="vehicleType" required>
+              @for (type of vehicleTypes; track type) {
+                <mat-option value="{{type}}">{{type}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+      
+          
+
+          <mat-form-field appearance="fill">
+            <mat-label>Hora de salida</mat-label>
+            <mat-select matNativeControl formControlName="departureTime" required>
+              @for (hour of hours; track hour) {
+                <mat-option value="{{hour}}">{{hour}}</mat-option>
+              }
+              
+            </mat-select>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill">
+            <mat-label>Cupos disponibles</mat-label>
+            <input matInput type="number" placeholder="Cupos disponibles" formControlName="availableSeats" required/>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill">
+            <mat-label>Lugar de origen</mat-label>
+              <input 
+                  matInput 
+                  [errorStateMatcher]="matcher"
+                  type="text" 
+                  placeholder="Lugar de origen"
+                  (input)="filter($event)" 
+                  formControlName="origin"
+                  [matAutocomplete]="auto"
+                  required
+              />
+              @if(form.errors?.['originDestination']){
+                <mat-error>El lugar de origen y destino no pueden ser iguales</mat-error>
+              }
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                @for (option of filteredOptions | async; track option) {
+                  <mat-option [value]="option">{{option}}</mat-option>
+                }
+              </mat-autocomplete>
+              
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill">
+            <mat-label>Lugar de destino</mat-label>
+              <input 
+                  matInput 
+                  [errorStateMatcher]="matcher"
+                  type="text" 
+                  placeholder="Lugar de destino" 
+                  formControlName="destination"
+                  (input)="filter($event)"
+                  [matAutocomplete]="auto" 
+                  required
+              />
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    @for (option of filteredOptions | async; track option) {
+                      <mat-option [value]="option">{{option}}</mat-option>
+                    }
+              </mat-autocomplete>
+              @if(form.errors?.['originDestination']){
+                <mat-error>El lugar de origen y destino no pueden ser iguales</mat-error>
+              }
+              @if (form.controls['destination'].hasError('required')) {
+                <mat-error>Lugar de destino es <strong>requerido</strong></mat-error>
+              }
+          </mat-form-field>
+      
+          <button mat-raised-button type="submit">Registrar ruta</button>
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,32 @@
+<app-header></app-header>
+
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Iniciar sesión</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <section>
+            <mat-form-field appearance="fill">
+              <mat-label>Nombre de usuario</mat-label>
+              <input matInput type="text" placeholder="Nombre de usuario" formControlName="username" required/>
+            </mat-form-field>
+      
+            <mat-form-field appearance="fill">
+              <mat-label>Contraseña</mat-label>
+              <input matInput type="password" placeholder="Contraseña" formControlName="password" required/>
+            </mat-form-field>
+      
+            <button mat-raised-button >Iniciar sesión</button>
+      </section>
+      </form>
+    </mat-card-content>
+</mat-card>
+
+
+
+
+<app-footer></app-footer>
+
+
+

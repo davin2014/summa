@@ -1,0 +1,50 @@
+
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  mat-card {
+    max-width: 400px;
+    margin: 2em auto;
+    text-align: center;
+  }
+  
+  mat-card-header {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  mat-card-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  mat-card-content {
+    background-color: white;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  
+  button {
+    width: 100%;
+  }
+  
+  ::ng-deep mat-form-field .mat-input-element {
+    background-color: white !important;
+  }
+
+  .error {
+    color: red; /* Cambia el color del texto a rojo */
+    font-weight: bold; /* Hace que el texto sea en negrita */
+    /* Agrega cualquier otro estilo que necesites aquí */
+  }
