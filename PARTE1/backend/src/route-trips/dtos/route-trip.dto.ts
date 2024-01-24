@@ -10,23 +10,23 @@ export class CreateRouteTripDto {
 
   @ApiProperty()
   @IsString()
-  tipoDeVehiculo: string;
+  tipodevehiculo: string;
 
   @ApiProperty()
   @IsDate()
-  horaDeSalida: Date;
+  horadesalida: string;
 
   @ApiProperty()
   @IsInt()
-  cuposDisponibles: number;
+  cuposdisponibles: number;
 
   @ApiProperty()
   @IsString()
-  lugarDeOrigen: string;
+  lugardeorigen: string;
 
   @ApiProperty()
   @IsString()
-  lugarDeDestino: string;
+  lugardedestino: string;
   
 }
 

@@ -8,7 +8,14 @@
         <form [formGroup]="form" (ngSubmit)="submit()">
           <mat-form-field appearance="fill">
             <mat-label>Fecha</mat-label>
-            <input matInput placeholder="Fecha" formControlName="date" [matDatepicker]="picker" required/>
+            <input 
+              matInput 
+              placeholder="Fecha" 
+              formControlName="fecha" 
+              [matDatepicker]="picker" 
+              [min]="minDate"
+              required
+            />
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
@@ -18,7 +25,7 @@
 
           <mat-form-field appearance="fill">
             <mat-label>Tipo de vehículo</mat-label>
-            <mat-select matNativeControl formControlName="vehicleType" required>
+            <mat-select matNativeControl formControlName="tipodevehiculo" required>
               @for (type of vehicleTypes; track type) {
                 <mat-option value="{{type}}">{{type}}</mat-option>
               }
@@ -29,7 +36,7 @@
 
           <mat-form-field appearance="fill">
             <mat-label>Hora de salida</mat-label>
-            <mat-select matNativeControl formControlName="departureTime" required>
+            <mat-select matNativeControl formControlName="horadesalida" required>
               @for (hour of hours; track hour) {
                 <mat-option value="{{hour}}">{{hour}}</mat-option>
               }
@@ -39,7 +46,7 @@
       
           <mat-form-field appearance="fill">
             <mat-label>Cupos disponibles</mat-label>
-            <input matInput type="number" placeholder="Cupos disponibles" formControlName="availableSeats" required/>
+            <input matInput type="number" placeholder="Cupos disponibles" formControlName="cuposdisponibles" required/>
           </mat-form-field>
       
           <mat-form-field appearance="fill">
@@ -50,7 +57,7 @@
                   type="text" 
                   placeholder="Lugar de origen"
                   (input)="filter($event)" 
-                  formControlName="origin"
+                  formControlName="lugardeorigen"
                   [matAutocomplete]="auto"
                   required
               />
@@ -72,7 +79,7 @@
                   [errorStateMatcher]="matcher"
                   type="text" 
                   placeholder="Lugar de destino" 
-                  formControlName="destination"
+                  formControlName="lugardedestino"
                   (input)="filter($event)"
                   [matAutocomplete]="auto" 
                   required
@@ -85,7 +92,7 @@
               @if(form.errors?.['originDestination']){
                 <mat-error>El lugar de origen y destino no pueden ser iguales</mat-error>
               }
-              @if (form.controls['destination'].hasError('required')) {
+              @if (form.controls['lugardedestino'].hasError('required')) {
                 <mat-error>Lugar de destino es <strong>requerido</strong></mat-error>
               }
           </mat-form-field>

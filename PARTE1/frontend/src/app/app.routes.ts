@@ -4,11 +4,8 @@ import { RouteTripsFormComponent } from './route/route-trips-form/route-trips-fo
 import { RouteTripsTableComponent } from './route/route-trips-table/route-trips-table.component';
 
 export const routes: Routes = [ 
-    { path: '', redirectTo: '/main', pathMatch: 'full' },
-    { 
-        path: 'main', 
-        component: LoginComponent 
-    },
+    { path: '', redirectTo: '/route', pathMatch: 'full' },
+
     {
         path: 'login',
         component: LoginComponent

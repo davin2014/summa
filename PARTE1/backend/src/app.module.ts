@@ -11,6 +11,8 @@ import { UsersModule } from './users/users.module';
 import { RouteTripsModule } from './route-trips/route-trips.module';
 import { enviroments } from './enviroments';
 import config from './config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { SuscripcionModule } from './suscripcion/suscripcion.module';
 
 
 
@@ -27,7 +29,7 @@ import config from './config';
       }),
     }),
     UsersModule, 
-    RouteTripsModule
+    RouteTripsModule, SuscripcionModule
   ],
   controllers: [AppController],
   providers: [AppService, AuthService],

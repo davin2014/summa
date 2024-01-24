@@ -1,8 +1,9 @@
 export interface RouteTrips {
-    date: string; // Fecha
-    vehicleType: string; // Tipo de vehículo
-    departureTime: string; // Hora de salida
-    availableSeats: number; // Cupos disponibles
-    origin: string; // Lugar de origen
-    destination: string; // Lugar de destino
+    id: number; // ID
+    fecha: string; // Fecha
+    tipodevehiculo: string; // Tipo de vehículo
+    horadesalida: string; // Hora de salida
+    cuposdisponibles: number; // Cupos disponibles
+    lugardeorigen: string; // Lugar de origen
+    lugardedestino: string; // Lugar de destino
   }

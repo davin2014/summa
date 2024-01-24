@@ -9,17 +9,17 @@ export class RouteTrip {
     fecha: Date;
 
     @Column({ type: 'varchar', length: 255 })
-    tipoDeVehiculo: string;
+    tipodevehiculo: string;
 
-    @Column({ type: 'time' })
-    horaDeSalida: Date;
+    @Column({ type: 'varchar', length: 8 })
+    horadesalida: string;
 
     @Column({ type: 'int' })
-    cuposDisponibles: number;
+    cuposdisponibles: number;
 
     @Column({ type: 'varchar', length: 255 })
-    lugarDeOrigen: string;
+    lugardeorigen: string;
 
     @Column({ type: 'varchar', length: 255 })
-    lugarDeDestino: string;
+    lugardedestino: string;
 }
