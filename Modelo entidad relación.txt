@@ -32,17 +32,15 @@ CREATE TABLE usuario (
 CREATE TABLE ruta (
   id SERIAL PRIMARY KEY,
   fecha DATE,
-  tipoDeVehiculo VARCHAR(255),
-  horaDeSalida TIME,
-  cuposDisponibles INT,
-  lugarDeOrigen VARCHAR(255),
-  lugarDeDestino VARCHAR(255)
+  tipodevehiculo VARCHAR(255),
+  horadesalida VARCHAR(8),
+  cuposdisponibles INT,
+  lugardeorigen VARCHAR(255),
+  lugardedestino VARCHAR(255)
 );
 
 CREATE TABLE suscripcion (
   id SERIAL PRIMARY KEY,
-  usuarioId INT,
-  rutaId INT,
-  FOREIGN KEY (usuarioId) REFERENCES Usuario(id),
-  FOREIGN KEY (rutaId) REFERENCES Ruta(id)
+  usuarioid INT,
+  rutaid INT
 );

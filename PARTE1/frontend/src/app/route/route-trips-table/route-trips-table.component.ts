@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -8,6 +8,10 @@ import { HeaderComponent } from '../../header/header.component';
 import { RouteTripsFormComponent } from '../route-trips-form/route-trips-form.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouteTripsService } from '../services/route-trips.service';
+import { MatIconModule } from '@angular/material/icon';
+import { RouteTrips } from '../interface/route-trips.interface';
+import { DataGlobalService } from '../../services/data-global.service';
 
 export interface PeriodicElement {
   name: string;
@@ -39,16 +43,22 @@ const ELEMENT_DATA: PeriodicElement[] = [
     RouteTripsFormComponent,
     MatFormFieldModule, 
     MatInputModule,
+    MatIconModule,
     HeaderComponent
   ],
   templateUrl: './route-trips-table.component.html',
   styleUrl: './route-trips-table.component.scss'
 })
-export class RouteTripsTableComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+export class RouteTripsTableComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'fecha', 'horadesalida', 'tipodevehiculo', 'cuposdisponibles', 'lugardedestino', 'lugardeorigen', 'actions'];
+  dataSource = new MatTableDataSource<RouteTrips>([]);
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog,
+    public dataGlobalService: DataGlobalService,
+    public routeTripsService:RouteTripsService,
+   ) {
+        this.getDataSource();
+    }
 
   addRoute(){
     this.dialog.open(RouteTripsFormComponent, {
@@ -60,5 +70,47 @@ export class RouteTripsTableComponent {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  getDataSource(){
+    this.routeTripsService.getAllTrips().subscribe((trips:RouteTrips[]) => {
+      let currentDate = new Date();
+      trips = trips.filter(trip => new Date(trip.fecha) >= currentDate);
+      trips.sort((a, b) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime());
+      this.dataSource = new MatTableDataSource(trips);
+    });
+  }
+
+  editRoute(route: RouteTrips){
+    const dialogRef = this.dialog.open(RouteTripsFormComponent, {
+      width: '400px', // Ancho del diálogo
+      height: '720px', // Altura del diálogo
+      data: route
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      
+      this.getDataSource();
+      this.dataGlobalService.setData([]);
+      
+    });
+  }
+
+  onSubmitEM(data: any) { 
+    this.dialog.closeAll(); 
+    console.log(data);
+  }
+
+  deleteRoute(route: RouteTrips){
+    this.routeTripsService.delete(route.id).subscribe((response) => {
+      console.log(response);
+      this.getDataSource();
+    });
+  }
+
+  ngOnInit() {
+    this.dataGlobalService.data$.subscribe((posts:RouteTrips[]) => {
+      this.getDataSource();
+    });
   }
 }

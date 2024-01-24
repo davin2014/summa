@@ -14,29 +14,65 @@
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="position">
+  <!-- Id Column -->
+  <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
   </ng-container>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  <!-- fecha Column -->
+  <ng-container matColumnDef="fecha">
+    <th mat-header-cell *matHeaderCellDef> fecha </th>
+    <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
   </ng-container>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef> Weight </th>
-    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+  <!-- horadesalida Column -->
+  <ng-container matColumnDef="horadesalida">
+    <th mat-header-cell *matHeaderCellDef> Hora de salida </th>
+    <td mat-cell *matCellDef="let element"> {{element.horadesalida}} </td>
   </ng-container>
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="symbol">
-    <th mat-header-cell *matHeaderCellDef> Symbol </th>
-    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+  <!-- tipodevehiculo Column -->
+  <ng-container matColumnDef="tipodevehiculo">
+    <th mat-header-cell *matHeaderCellDef> Tipo de vehiculo </th>
+    <td mat-cell *matCellDef="let element"> {{element.tipodevehiculo}} </td>
   </ng-container>
+
+  <!-- cuposdisponibles Column -->
+  <ng-container matColumnDef="cuposdisponibles">
+    <th mat-header-cell *matHeaderCellDef> Cupos disponibles </th>
+    <td mat-cell *matCellDef="let element"> {{element.cuposdisponibles}} </td>
+  </ng-container>
+
+  <!-- lugardedestino Column -->
+  <ng-container matColumnDef="lugardedestino">
+    <th mat-header-cell *matHeaderCellDef> Lugar de destino </th>
+    <td mat-cell *matCellDef="let element"> {{element.lugardedestino}} </td>
+  </ng-container>
+
+  <!-- lugardeorigen Column -->
+  <ng-container matColumnDef="lugardeorigen">
+    <th mat-header-cell *matHeaderCellDef> Lugar de origen </th>
+    <td mat-cell *matCellDef="let element"> {{element.lugardeorigen}} </td>
+  </ng-container>
+
+  <!-- actions Column -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> acciones </th>
+    
+    <td mat-cell *matCellDef="let element"> 
+      @if(element.cuposdisponibles > 0){
+      <button mat-icon-button (click)="editRoute(element)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="deleteRoute(element)">
+        <mat-icon>delete</mat-icon>
+      </button>
+      }
+     </td>
+  </ng-container>
+
+  
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -46,3 +82,4 @@
     <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
   </tr>
 </table>
+

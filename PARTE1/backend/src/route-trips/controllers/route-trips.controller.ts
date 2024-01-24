@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { RouteTripsService } from '../services/route-trips.service';
 import { CreateRouteTripDto, UpdateRouteTripDto } from '../dtos/route-trip.dto';
@@ -26,6 +26,11 @@ export class RouteTripsController {
     @Put(':id')
     update(@Param('id') id: number, @Body() payload: UpdateRouteTripDto) {
         return this.routeTripsService.update(id, payload);
+    }
+
+    @Delete(':id')
+    delete(@Param('id') id: number) {
+        return this.routeTripsService.remove(id);
     }
 
     
