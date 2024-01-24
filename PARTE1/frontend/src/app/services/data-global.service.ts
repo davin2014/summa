@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { RouteTrips } from '../route/interface/route-trips.interface';
 import { RouteTripsService } from '../route/services/route-trips.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
