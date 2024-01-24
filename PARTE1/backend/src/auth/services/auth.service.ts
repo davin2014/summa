@@ -7,8 +7,8 @@ import { BearerStrategy, ITokenPayload, VerifyCallback, IBearerStrategyOption } 
 export class AuthService extends PassportStrategy(BearerStrategy, 'azure-ad') {
     constructor() {
         super({
-          identityMetadata: 'https://login.microsoftonline.com/predictiva.com.co.onmicrosoft.com/v2.0/.well-known/openid-configuration',
-          clientID: '1214283d-9243-407f-8942-fa6c9f1457ae',
+          identityMetadata: 'https://login.microsoftonline.com/xxxxxxxxxxxx/v2.0/.well-known/openid-configuration',
+          clientID: '1214283d-9243-407f-8942-fa6c9f1457aeaaaa',
           validateIssuer: true,
           loggingLevel: 'info',
           passReqToCallback: false,
